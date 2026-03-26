@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.pyc
+.env
+venv/
+*.egg-info/
+
+# GCP credentials — NEVER commit these
+*.json
+service-account*.json
+application_default_credentials.json
+
+# dbt
+target/
+dbt_packages/
+logs/
+
+# OS
+.DS_Store
