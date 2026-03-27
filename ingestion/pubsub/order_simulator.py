@@ -8,7 +8,7 @@ from google.cloud import pubsub_v1
 
 fake = Faker("en_IN")  # Indian locale — names, cities etc.
 
-# ── Config ────────────────────────────────────────────────
+# Config
 CATEGORIES   = ["Electronics", "Clothing", "Books", "Home & Kitchen", "Sports"]
 STATUSES     = ["placed", "confirmed", "shipped", "delivered", "cancelled"]
 PAYMENT_METHODS = ["UPI", "Credit Card", "Debit Card", "Net Banking", "COD"]
