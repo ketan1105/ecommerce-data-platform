@@ -15,35 +15,28 @@ PAYMENT_METHODS = ["UPI", "Credit Card", "Debit Card", "Net Banking", "COD"]
 
 # Event generator
 def generate_order_event() -> dict:
-    """Generate one realistic e-commerce order event."""
     num_items = random.randint(1, 5)
     items = []
     order_total = 0.0
 
     for _ in range(num_items):
-        price    = round(random.uniform(99, 9999), 2)
-        qty      = random.randint(1, 3)
+        price = round(random.uniform(99, 9999), 2)
+        qty   = random.randint(1, 3)
         items.append({
-            "product_id"   : f"PROD-{random.randint(1000, 9999)}",
-            "product_name" : fake.bs().title(),
-            "category"     : random.choice(CATEGORIES),
-            "price"        : price,
-            "quantity"     : qty,
+            "product_id" : f"PROD-{random.randint(1000, 1099)}",
+            "price"      : price,
+            "quantity"   : qty,
         })
         order_total += price * qty
 
     return {
-        "order_id"       : f"ORD-{fake.uuid4()[:8].upper()}",
-        "customer_id"    : f"CUST-{random.randint(1000, 9999)}",
-        "customer_name"  : fake.name(),
-        "customer_email" : fake.email(),
-        "customer_city"  : fake.city(),
-        "customer_state" : fake.state(),
-        "items"          : items,
-        "order_total"    : round(order_total, 2),
-        "status"         : random.choice(STATUSES),
-        "payment_method" : random.choice(PAYMENT_METHODS),
-        "event_timestamp": datetime.utcnow().isoformat() + "Z",
+        "order_id"        : f"ORD-{fake.uuid4()[:8].upper()}",
+        "customer_id"     : f"CUST-{random.randint(1000, 1099)}",
+        "items"           : items,
+        "order_total"     : round(order_total, 2),
+        "status"          : random.choice(STATUSES),
+        "payment_method"  : random.choice(PAYMENT_METHODS),
+        "event_timestamp" : datetime.utcnow().isoformat() + "Z",
     }
 
 # Publisher
