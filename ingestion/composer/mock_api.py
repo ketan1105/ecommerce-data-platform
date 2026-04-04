@@ -6,14 +6,19 @@ import uvicorn
 fake = Faker("en_IN")
 app  = FastAPI()
 
-CATEGORIES = ["Electronics","Clothing","Books","Home & Kitchen","Sports"]
+CATEGORIES = ["Electronics", "Clothing", "Books", "Home & Kitchen", "Sports"]
+
+@app.get("/health")
+def health():
+    return {"status": "healthy"}
 
 @app.get("/products")
 def get_products(limit: int = 100):
+    used_ids = random.sample(range(1000, 1100), min(limit, 100))
     products = []
-    for i in range(limit):
+    for prod_id in used_ids:
         products.append({
-            "product_id"  : f"PROD-{1000 + i}",
+            "product_id"  : f"PROD-{prod_id}",
             "product_name": fake.bs().title(),
             "category"    : random.choice(CATEGORIES),
             "price"       : round(random.uniform(99, 9999), 2),
@@ -25,10 +30,11 @@ def get_products(limit: int = 100):
 
 @app.get("/customers")
 def get_customers(limit: int = 100):
+    used_ids = random.sample(range(1000, 1100), min(limit, 100))
     customers = []
-    for i in range(limit):
+    for cust_id in used_ids:
         customers.append({
-            "customer_id"  : f"CUST-{1000 + i}",
+            "customer_id"  : f"CUST-{cust_id}",
             "name"         : fake.name(),
             "email"        : fake.email(),
             "phone"        : fake.phone_number(),
@@ -41,4 +47,4 @@ def get_customers(limit: int = 100):
     return {"data": customers, "count": len(customers)}
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run(app, host="0.0.0.0", port=8080)

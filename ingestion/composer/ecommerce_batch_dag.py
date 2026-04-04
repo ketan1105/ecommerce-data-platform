@@ -12,7 +12,7 @@ import os
 # Config
 PROJECT_ID  = "arboreal-tracer-491416-r1"
 BUCKET_NAME = "ecommerce-raw-arboreal-tracer-491416-r1"
-API_BASE    = "http://localhost:8000"
+API_BASE = "https://mock-api-YOUR_HASH-el.a.run.app"
 
 default_args = {
     "owner"           : "ketan",
